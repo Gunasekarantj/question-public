@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz"></div>
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="score"></p>
+
+    <script>
+        var questions = [
+            "How to create a hashset of characters with variable name charSet in Java?",
+            "How to convert the string 's' to a character array in Java?"
+        ];
+        var answers = [
+            "HashSet<Character> charSet = new HashSet<>()",
+            "s.toCharArray()"
+        ];
+        var score = 0;
+
+        for (var i = 0; i < questions.length; i++) {
+            var question = document.createElement('p');
+            question.innerText = questions[i];
+            question.className = "question";
+            document.getElementById('quiz').appendChild(question);
+
+            var input = document.createElement('input');
+            input.id = "answer" + i;
+            document.getElementById('quiz').appendChild(input);
+        }
+
+        function checkAnswer() {
+            for (var i = 0; i < questions.length; i++) {
+                var userAnswer = document.getElementById("answer" + i).value;
+                if (userAnswer === answers[i]) {
+                    score++;
+                }
+            }
+            document.getElementById('score').innerText = "Your final score is: " + score;
+        }
+    </script>
+</body>
+</html>
